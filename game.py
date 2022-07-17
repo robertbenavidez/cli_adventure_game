@@ -21,7 +21,7 @@ def explore_labyrinth():
         player_input = input('->')
 
         if player_input == 'help':
-            print('help goes here')
+            show_help()
         elif player_input == 'quit':
             # TODO: print final score
             print('Fleeing the Dungeon you leave the village in peril.')
@@ -43,3 +43,18 @@ def play_again():
         exit(0)
 
 
+def show_help():
+    print("""Enter a command
+    - n/s/e/w - move in a direction
+    - map - show a map and of the dungeon 
+    - look - look around and describe your environment
+    - equip - <item> - use an item from your inventory
+    - unequip <item> stop using an item from your inventory
+    - fight - attach a foe
+    - examine <object> - examine an object more closely
+    - get <item> - pick up an item 
+    - drop <item> - drop an item
+    - rest - restore some health by resting
+    - inventory - show current player inventory
+    - status - show current player status
+    - quit - end the game""")

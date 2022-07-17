@@ -18,7 +18,7 @@ def play_game():
 
 def explore_labyrinth():
     while True:
-        player_input = input('->')
+        player_input = input('->').lower().strip()
 
         if player_input == 'help':
             show_help()
@@ -32,15 +32,27 @@ def explore_labyrinth():
 
 
 # restart game function
-# TODO: currently the function quites with any command other than 'yes'
 def play_again():
-    yn = input('Play again? (yes/no) ->')
+    yn = get_yn("Play again?")
 
     if yn == 'yes':
         play_game()
     else:
         print('Until next time...')
         exit(0)
+
+
+def get_yn(question):
+    while True:
+        answer = input(question + " (yes/no) -> ").lower().strip()
+        if answer not in ["yes", "no", "y", "n"]:
+            print("Please enter yes or no.")
+        else:
+            if answer == "y":
+                answer = "yes"
+            elif answer == "n":
+                answer = "no"
+            return answer
 
 
 def show_help():

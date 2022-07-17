@@ -42,7 +42,7 @@ def play_again():
         exit(0)
 
 
-def get_yn(question):
+def get_yn(question: str) -> str:
     while True:
         answer = input(question + " (yes/no) -> ").lower().strip()
         if answer not in ["yes", "no", "y", "n"]:

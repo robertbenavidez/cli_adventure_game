@@ -1,4 +1,4 @@
-from colorama import Fore
+from colorama import Fore, init
 
 
 # welcome prints out the welcome text
@@ -15,6 +15,8 @@ def welcome():
 
 
 def play_game():
+    # makes sure colorama works on various operating systems
+    init()
     welcome()
     input('Press ENTER to continue')
     explore_labyrinth()

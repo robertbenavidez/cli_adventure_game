@@ -1,3 +1,6 @@
+import random
+import armory
+import bestiary
 from classes import Player, Room, Game
 from colorama import Fore, init
 
@@ -23,20 +26,42 @@ def play_game():
 
     current_game = Game(adventurer)
 
-
-
     welcome()
     input('Press ENTER to continue')
     explore_labyrinth(current_game)
 
 
+# generate a room
+def generate_room() -> Room:
+    items = []
+    monster = {}
+
+    # There is a 25% chance an item is in this room.
+    if random.randint(1, 100) < 26:
+        i = random.choice(list(armory.items.values()))
+        items.append(i)
+
+    # There is a 25% chance a monster is in this room.
+    if random.randint(1, 100) < 26:
+        monster = random.choice(bestiary.monsters)
+
+    return Room(items, monster)
+
+
 def explore_labyrinth(current_game: Game):
     while True:
-        room = Room()
+        room = generate_room()
 
         current_game.room = room
+
         current_game.room.print_description()
+
+        for i in current_game.room.items:
+            print(f"{Fore.YELLOW}You see a {i['name']}")
         player_input = input(Fore.LIGHTYELLOW_EX + '->').lower().strip()
+
+        if current_game.room.monster:
+            print(f"{Fore.RED}There is a {current_game.room.monster['name']} here!")
 
         if player_input == 'help':
             show_help()

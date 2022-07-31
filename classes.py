@@ -2,6 +2,7 @@ import descriptions
 
 import random
 
+from colorama import Fore
 
 class Player:
     def __init__(self):
@@ -10,6 +11,7 @@ class Player:
         self.monsters_defeated: int = 0
         self.xp: int = 0
         self.turns: int = 0
+        self.inventory: list = []
 
 
 class Room:
@@ -21,7 +23,7 @@ class Room:
         self.monster: dict = monster
 
     def print_description(self):
-        print(self.description)
+        print(f"{Fore.GREEN}{self.description}")
         print(self.smell)
         print(self.sound)
 

@@ -66,6 +66,7 @@ def explore_labyrinth(current_game: Game):
         # show game help
         if player_input == 'help':
             show_help()
+            continue
         # grab item
         elif player_input.startswith("get"):
             if not current_game.room.items:
@@ -73,6 +74,10 @@ def explore_labyrinth(current_game: Game):
                 continue
             else:
                 get_an_item(current_game, player_input)
+
+        elif player_input == "inventory" or player_input == "inv":
+            show_inventory(current_game)
+            continue
 
         # move around the map
         elif player_input in ["n", "s", "e", "w"]:
@@ -86,6 +91,12 @@ def explore_labyrinth(current_game: Game):
 
         else:
             print('Incorrect command. Please type help to find the proper commands')
+
+
+def show_inventory(current_game: Game):
+    print(f"{Fore.CYAN} Your inventory:")
+    for x in current_game.player.inventory:
+        print(f"    - {x.capitalize()}")
 
 
 def get_an_item(current_game, player_input):
@@ -114,7 +125,6 @@ def find_in_list(search_string: str, key: str, list_to_search: list) -> int:
             idx = count
         count += 1
     return idx
-
 
 
 # restart game function
